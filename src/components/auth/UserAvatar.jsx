@@ -5,7 +5,7 @@ function UserAvatar() {
   return (
     <div className="mr-4 flex items-center text-2xl font-medium text-gray-600">
       <img
-        className="block w-14 rounded-full object-cover object-center outline outline-2 outline-gray-100"
+        className="block w-12 rounded-full object-cover object-center outline outline-2 outline-gray-200 hover:outline-gray-500"
         src={"" || "default-user.jpg"}
         alt={`Avatar of ${"xdd"}`}
       />
