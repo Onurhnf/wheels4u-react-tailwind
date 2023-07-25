@@ -1,5 +1,9 @@
 import React from "react";
-import { HiOutlineHome, HiOutlineCalendar } from "react-icons/hi";
+import {
+  HiOutlineHome,
+  HiOutlineCalendar,
+  HiOutlineLogout,
+} from "react-icons/hi";
 
 function Icon({ iconName }) {
   let style =
@@ -10,6 +14,9 @@ function Icon({ iconName }) {
 
     case "bookings":
       return <HiOutlineCalendar className={style} />;
+
+    case "logout":
+      return <HiOutlineLogout className={style} />;
 
     default:
       throw Error("There is no icon with that name");

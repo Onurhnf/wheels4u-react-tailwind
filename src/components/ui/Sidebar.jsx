@@ -1,14 +1,13 @@
 // src/components/Sidebar.js
 import React from "react";
 import Logo from "./Logo.jsx";
-import Button from "./Button.jsx";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import MainNav from "./MainNav.jsx";
 const Sidebar = ({ toggleSidebar, isSidebarOpen }) => {
   return (
     <div
       className={
-        "relative row-span-full flex flex-col items-center border-r border-r-gray-200 bg-stone-100 text-white drop-shadow-lg transition-all duration-300"
+        "relative row-span-full flex flex-col items-center border-r border-r-gray-200 bg-stone-100 text-white drop-shadow-sm transition-all duration-300"
       }
     >
       <button

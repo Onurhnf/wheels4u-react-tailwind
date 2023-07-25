@@ -13,7 +13,7 @@ function MainNavLi({ to, isSidebarOpen }) {
   };
 
   return (
-    <li className="group first:mt-2">
+    <li className="group justify-end first:mt-2 last:absolute last:bottom-8 ">
       <NavLink
         end
         to={`/${to}`}
