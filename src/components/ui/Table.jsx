@@ -1,4 +1,5 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getBookings } from "../../services/bookings.service.js";
 
 const StyledTable = ({ children, role }) => (
   <div
@@ -10,11 +11,14 @@ const StyledTable = ({ children, role }) => (
 );
 
 const CommonRow = ({ columns, className, children, role = "row" }) => {
-  let style =
-    `grid grid-cols-${columns} items-center gap-x-6 transition-none` +
-    className;
+  const base = "grid items-center gap-x-6 transition-none" + className;
+
+  const styles = {
+    carList: base + " grid-cols-[0.6fr_2fr_2.4fr_1.4fr_1fr_3.2rem]",
+  };
+
   return (
-    <div role={role} className={style}>
+    <div role={role} className={styles[columns]}>
       {children}
     </div>
   );
@@ -73,27 +77,20 @@ const Row = ({ children, role }) => {
 };
 
 const Body = ({ data, render }) => {
-  if (!data.length) return <Empty>No data to show at the moment</Empty>;
+  if (!data?.length) return <Empty>No data to show at the moment</Empty>;
   //TODO create create custom row for data
   return (
     <StyledBody>
-      {/* {data.map((booking) => (
+      {data.map((car) => (
         <Table.Row role="row">
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-          <div>{booking.endDate}</div>
-
-          <div>{booking.endDate}</div>
+          <div>{car.make}</div>
+          <div>{car.model}</div>
+          <div>{car.year}</div>
+          <div>{car.color}</div>
+          <div>{car.mileage}</div>
+          <div>{car.rental_rate}</div>
         </Table.Row>
-      ))} */}
+      ))}
     </StyledBody>
   );
 };

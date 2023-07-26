@@ -1,29 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../components/ui/Table.jsx";
+import { getBookings } from "../services/bookings.service.js";
 
 function Dashboard() {
-  const bookings = [
-    {
-      created_at: "asd",
-      startDate: "asd",
-      endDate: "asd",
-      isPaid: false,
-      numGuests: 1,
-    },
-  ];
+  //TODO handle data
+  const [cars, setCars] = useState();
+  function asd() {
+    getBookings().then((data) => {
+      console.log(data);
+
+      setCars(data);
+    });
+  }
+
+  useEffect(() => {
+    asd();
+  }, []);
 
   return (
     <>
-      <Table columns="[0.6fr_2fr_2.4fr_1.4fr_1fr_3.2rem]">
+      <Table columns="carList">
         <Table.Header>
-          <div>Cabin</div>
-          <div>Guest</div>
-          <div>Dates</div>
-          <div>Status</div>
-          <div>Amount</div>
-          <div>Amount</div>
+          <div>Make</div>
+          <div>Model</div>
+          <div>Year</div>
+          <div>Color</div>
+          <div>Mileage</div>
+          <div>Rental Rate</div>
         </Table.Header>
-        <Table.Body data={bookings} />
+        <Table.Body data={cars} />
       </Table>
     </>
   );
