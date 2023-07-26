@@ -21,7 +21,7 @@ function Dashboard() {
           <div>Dates</div>
           <div>Status</div>
           <div>Amount</div>
-          <div></div>
+          <div>Amount</div>
         </Table.Header>
         <Table.Body data={bookings} />
       </Table>

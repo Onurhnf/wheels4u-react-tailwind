@@ -77,7 +77,7 @@ const Body = ({ data, render }) => {
   //TODO create create custom row for data
   return (
     <StyledBody>
-      {data.map((booking) => (
+      {/* {data.map((booking) => (
         <Table.Row role="row">
           <div>{booking.endDate}</div>
           <div>{booking.endDate}</div>
@@ -90,8 +90,10 @@ const Body = ({ data, render }) => {
           <div>{booking.endDate}</div>
           <div>{booking.endDate}</div>
           <div>{booking.endDate}</div>
+
+          <div>{booking.endDate}</div>
         </Table.Row>
-      ))}
+      ))} */}
     </StyledBody>
   );
 };
