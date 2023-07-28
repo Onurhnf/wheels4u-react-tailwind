@@ -27,7 +27,7 @@ function MainNavLi({ to, isSidebarOpen }) {
       >
         {isSidebarOpen && (
           <>
-            <Icon iconName={to} />
+            <Icon iconName={to === "wheels" ? "vehicles" : to} />
 
             <span className="capitalize transition-all duration-300">{to}</span>
           </>

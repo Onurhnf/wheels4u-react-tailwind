@@ -1,10 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getBookings } from "../../services/bookings.service.js";
+import { createContext, useContext } from "react";
 
 const StyledTable = ({ children, role }) => (
   <div
     role={role}
-    className="overflow-hidden rounded-md border border-gray-200 text-xl"
+    className="overflow-hidden rounded-md border border-gray-600 text-xl"
   >
     {children}
   </div>
@@ -14,7 +13,8 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
   const base = "grid items-center gap-x-6 transition-none" + className;
 
   const styles = {
-    carList: base + " grid-cols-[0.6fr_2fr_2.4fr_1.4fr_1fr_3.2rem]",
+    vehicleList: base + " grid-cols-[0.3fr_1fr_1fr_1fr_1fr_1fr_1.2fr]",
+    bookingList: base + " grid-cols-7",
   };
 
   return (
@@ -26,7 +26,7 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
 const StyledHeader = ({ columns, children }) => (
   <CommonRow
     columns={columns}
-    className=" border-b border-gray-100 bg-gray-50 px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-600"
+    className=" border-b border-gray-400 bg-stone-200 px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-600 drop-shadow-sm"
   >
     {children}
   </CommonRow>
@@ -36,7 +36,7 @@ const StyledRow = ({ columns, children, role }) => (
   <CommonRow
     role={role}
     columns={columns}
-    className=" border-b border-gray-100 px-6 py-3"
+    className=" border-b border-gray-300 px-6 py-3"
   >
     {children}
   </CommonRow>
@@ -78,21 +78,8 @@ const Row = ({ children, role }) => {
 
 const Body = ({ data, render }) => {
   if (!data?.length) return <Empty>No data to show at the moment</Empty>;
-  //TODO create create custom row for data
-  return (
-    <StyledBody>
-      {data.map((car) => (
-        <Table.Row role="row">
-          <div>{car.make}</div>
-          <div>{car.model}</div>
-          <div>{car.year}</div>
-          <div>{car.color}</div>
-          <div>{car.mileage}</div>
-          <div>{car.rental_rate}</div>
-        </Table.Row>
-      ))}
-    </StyledBody>
-  );
+
+  return <StyledBody>{data.map(render)}</StyledBody>;
 };
 
 Table.Header = Header;

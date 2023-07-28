@@ -3,6 +3,7 @@ import React from "react";
 import Logo from "./Logo.jsx";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import MainNav from "./MainNav.jsx";
+
 const Sidebar = ({ toggleSidebar, isSidebarOpen }) => {
   return (
     <div

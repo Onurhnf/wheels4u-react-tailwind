@@ -6,6 +6,7 @@ function MainNav({ isSidebarOpen }) {
       <ul className="flex flex-col gap-2 overflow-hidden">
         <MainNavLi to={"dashboard"} isSidebarOpen={isSidebarOpen} />
         <MainNavLi to={"bookings"} isSidebarOpen={isSidebarOpen} />
+        <MainNavLi to={"wheels"} isSidebarOpen={isSidebarOpen} />
         <MainNavLi to={"logout"} isSidebarOpen={isSidebarOpen} />
       </ul>
     </nav>
