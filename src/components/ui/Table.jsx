@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 const StyledTable = ({ children, role }) => (
   <div
     role={role}
-    className="overflow-hidden rounded-md border border-gray-600 text-xl"
+    className="overflow-hidden rounded-md rounded-b-sm border border-gray-600 text-xl"
   >
     {children}
   </div>
@@ -13,7 +13,7 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
   const base = "grid items-center gap-x-6 transition-none" + className;
 
   const styles = {
-    vehicleList: base + " grid-cols-[0.3fr_1fr_1fr_1fr_1fr_1fr_1.2fr]",
+    vehicleList: base + " grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr_1.2fr]",
     bookingList: base + " grid-cols-7",
   };
 
@@ -36,7 +36,7 @@ const StyledRow = ({ columns, children, role }) => (
   <CommonRow
     role={role}
     columns={columns}
-    className=" border-b border-gray-300 px-6 py-3"
+    className=" border-b border-gray-300 px-6 py-3 first:mt-[-4px] last:mb-[-4px] last:border-b-0 hover:bg-gray-100"
   >
     {children}
   </CommonRow>

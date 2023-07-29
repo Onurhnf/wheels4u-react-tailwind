@@ -9,7 +9,7 @@ import { GiCartwheel } from "react-icons/gi";
 
 function Icon({ iconName }) {
   let style =
-    "h-8 w-8 text-gray-500  transition-all duration-300 group-hover:text-stone-700 group-active:text-gray-900 group-visited:text-gray-500";
+    "h-8 w-8 text-emerald-600  transition-all duration-300 group-hover:text-emerald-500 group-active:text-gray-900 group-visited:text-gray-500 group-last:text-red-500 group-hover:group-last:text-red-400";
 
   switch (iconName) {
     case "dashboard":

@@ -14,8 +14,8 @@ function VehichleRow({ vehicle }) {
 
   return (
     <Table.Row>
-      <div className="border-r-2 border-stone-500 text-xl font-semibold uppercase">
-        {vehicle_type /*TODO make this icon */}
+      <div className=" text-xl font-semibold uppercase">
+        {vehicle_type /*TODO (maybe) make this icon */}
       </div>
       <div className="text-2xl font-semibold capitalize text-gray-600">
         {make}

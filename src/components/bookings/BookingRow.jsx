@@ -15,8 +15,8 @@ function BookingRow({ booking }) {
 
   return (
     <Table.Row>
-      <div className="border-r-2 border-stone-500 text-xl font-semibold uppercase">
-        {vehicles?.vehicle_type /*TODO make this icon */}
+      <div className=" text-xl font-semibold uppercase">
+        {vehicles?.vehicle_type}
       </div>
       <div className="text-2xl font-semibold capitalize text-gray-600">
         {user_id}
