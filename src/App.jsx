@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import colors from "tailwindcss/colors.js";
 import ProtectedRoute from "./components/ui/ProtectedRoute.jsx";
 import Logout from "./components/auth/Logout.jsx";
+import PageNotFound from "./pages/404.jsx";
 
 function App() {
   const queryClient = new QueryClient({
@@ -39,7 +40,9 @@ function App() {
             <Route path="logout" element={<Logout />} />
           </Route>
 
-          <Route path="auth" element={<AuthPage />} />
+          <Route path="login" element={<AuthPage />} />
+          <Route path="signup" element={<AuthPage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster

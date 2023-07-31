@@ -12,10 +12,6 @@ function MainNavLi({ to, isSidebarOpen }) {
     inActive: base + "",
   };
 
-  if (to === "logout") {
-    console.log("asddsa");
-  }
-
   return (
     <li className="group justify-end first:mt-2 last:absolute  last:bottom-8 ">
       <NavLink

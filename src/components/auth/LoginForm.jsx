@@ -2,18 +2,26 @@ import React, { useState } from "react";
 import Form from "../ui/Form.jsx";
 import FormRow from "../ui/FormRow.jsx";
 import Button from "../ui/Button.jsx";
-import { useGoogleLogin, useMailLogin } from "./hooks/useLogin.js";
+import {
+  useGithubLogin,
+  useGoogleLogin,
+  useMailLogin,
+} from "./hooks/useLogin.js";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
+
 import Stack from "../ui/Stack.jsx";
 import Spinner from "../ui/Spinner.jsx";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading } = useMailLogin();
   const { googleLogin, isLoading: isGoogleLoading } = useGoogleLogin();
+  const { githubLogin, isLoading: isGithubLoading } = useGithubLogin();
 
-  function handleSubmit(e) {
+  function handleLoginSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
     login(
@@ -32,6 +40,11 @@ function LoginForm() {
     googleLogin();
   }
 
+  function handleGithubLogin(e) {
+    e.preventDefault();
+    githubLogin();
+  }
+
   return (
     <main className="flex h-screen flex-col items-center justify-start  md:justify-center ">
       <img
@@ -40,9 +53,9 @@ function LoginForm() {
         alt="login"
       />
       <p className="mb-6 mt-9 text-2xl font-extrabold md:mt-0">
-        Log in to Your Account
+        Sign in to Wheels 4U
       </p>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleLoginSubmit}>
         <FormRow label={"Email Adress"}>
           <input
             className="input"
@@ -69,24 +82,36 @@ function LoginForm() {
           />
         </FormRow>
         <FormRow>
-          <Button disabled={isLoading} type={"small"} onClick={handleSubmit}>
+          <Button
+            disabled={isLoading}
+            variant={"small"}
+            onClick={handleLoginSubmit}
+          >
             {isLoading ? (
               <div className="-my-1 flex justify-center ">
                 <Spinner />
               </div>
             ) : (
-              "Submit"
+              "Sign in"
             )}
           </Button>
         </FormRow>
         <FormRow>
+          <div className="mt-2 flex items-center justify-center">
+            <Link to={"/signup"} className="text-sm text-gray-500 underline">
+              Don't have an account? Sign up
+            </Link>
+          </div>
+        </FormRow>
+        <FormRow>
           <span className="duration-400 my-5 rounded-full border-t-4  border-emerald-300/50 opacity-100 transition-all group-hover:border-emerald-300/80" />
         </FormRow>
+
         <FormRow>
           <Button onClick={handleGoogleLogin} disabled={isLoading}>
             <Stack
               type={"horizontal"}
-              className="gap-2 rounded-lg border-2 p-2 hover:border-emerald-300 hover:bg-stone-50 hover:shadow-none"
+              className="gap-2 rounded-lg border-2 p-2 hover:border-sky-500 hover:bg-stone-50 hover:shadow-none"
             >
               {isGoogleLoading ? (
                 <div className="-my-1 flex justify-center ">
@@ -96,7 +121,26 @@ function LoginForm() {
                 <>
                   <FcGoogle size={"2.3rem"} />
                   <span className="text-base font-bold text-stone-600">
-                    Login With Google
+                    Sign in With Google
+                  </span>
+                </>
+              )}
+            </Stack>
+          </Button>
+          <Button onClick={handleGithubLogin} disabled={isLoading}>
+            <Stack
+              type={"horizontal"}
+              className="gap-2 rounded-lg border-2 p-2 hover:border-stone-900 hover:bg-stone-50 hover:shadow-none"
+            >
+              {isGithubLoading ? (
+                <div className="-my-1 flex justify-center ">
+                  <Spinner />
+                </div>
+              ) : (
+                <>
+                  <AiFillGithub size={"2.3rem"} />
+                  <span className="text-base font-bold text-stone-600">
+                    Sign in With Github
                   </span>
                 </>
               )}

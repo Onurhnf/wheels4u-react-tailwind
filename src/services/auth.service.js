@@ -7,7 +7,22 @@ export async function loginApi({ email, password }) {
   });
 
   if (error) throw new Error(error.message);
-  console.log(data);
+
+  return data;
+}
+
+export async function signUpApi({ fullName, email, password }) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName,
+      },
+    },
+  });
+
+  if (error) throw new Error(error.message);
 
   return data;
 }
@@ -15,6 +30,16 @@ export async function loginApi({ email, password }) {
 export async function loginWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export async function loginWithGithub() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
   });
 
   if (error) throw new Error(error.message);

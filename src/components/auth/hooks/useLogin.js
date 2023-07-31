@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { loginApi, loginWithGoogle } from "../../../services/auth.service.js";
+import {
+  loginApi,
+  loginWithGithub,
+  loginWithGoogle,
+} from "../../../services/auth.service.js";
 import { toast } from "react-hot-toast";
 
 export function useMailLogin() {
@@ -34,4 +38,17 @@ export function useGoogleLogin() {
   });
 
   return { googleLogin, isLoading };
+}
+
+export function useGithubLogin() {
+  const { mutate: githubLogin, isLoading } = useMutation({
+    mutationFn: () => loginWithGithub(),
+
+    onError: (err) => {
+      console.log("ERROR", err);
+      toast.error("Something went wrong");
+    },
+  });
+
+  return { githubLogin, isLoading };
 }

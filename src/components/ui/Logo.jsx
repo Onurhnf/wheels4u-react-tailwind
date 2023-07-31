@@ -1,5 +1,5 @@
 function Logo({ isSidebarOpen }) {
-  const src = "/logo-light.png";
+  const src = "/logo-light2.png";
 
   return (
     isSidebarOpen && (

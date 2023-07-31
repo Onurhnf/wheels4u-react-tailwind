@@ -8,7 +8,7 @@ function Logout() {
 
   useEffect(() => {
     logout();
-  }, []);
+  }, [logout]);
 
   return <div>{isLoading ? <Loader /> : ""}</div>;
 }
