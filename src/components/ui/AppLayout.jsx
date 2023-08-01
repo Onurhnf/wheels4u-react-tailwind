@@ -14,18 +14,18 @@ function AppLayout() {
 
   if (isSidebarOpen) {
     sidebarStyle =
-      "md:grid-cols-[15rem_1fr] grid-cols-[12rem_1fr] grid h-screen grid-rows-[auto_1fr] transition-all duration-300";
+      "grid-cols-[260px_1fr] grid h-screen grid-rows-[auto_1fr] transition-all duration-300";
   } else {
     sidebarStyle =
-      "md:grid-cols-[15rem_1fr] grid-cols-[6px_1fr] grid h-screen grid-rows-[auto_1fr] transition-all duration-300";
+      "grid h-screen grid-cols-sidebar-collapsed grid-rows-[auto_1fr] transition-all duration-300 ";
   }
 
   return (
     <div className={sidebarStyle}>
       <Header />
       <Sidebar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-      <main className=" overflow-scroll bg-gray-50 px-[4.8rem] pb-[6.4rem] pt-16">
-        <div className="mx-auto my-0 flex max-w-[120rem] flex-col gap-[3.2rem]">
+      <main className=" overflow-scroll bg-gray-50 p-[4rem_4.8rem_6.4rem]">
+        <div className="m-[0px_auto] flex max-w-6xl flex-col gap-[3.2rem]">
           <Outlet />
         </div>
       </main>

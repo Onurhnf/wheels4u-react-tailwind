@@ -6,9 +6,9 @@ import MainNav from "./MainNav.jsx";
 
 const Sidebar = ({ toggleSidebar, isSidebarOpen }) => {
   return (
-    <div
+    <aside
       className={
-        "relative row-span-full flex flex-col items-center border-r border-r-gray-200 bg-stone-100 text-white drop-shadow-sm transition-all duration-300"
+        "relative row-span-full flex flex-col items-center border-r border-r-gray-100 bg-white px-6 py-7 text-white  transition-all duration-300"
       }
     >
       <button
@@ -20,7 +20,7 @@ const Sidebar = ({ toggleSidebar, isSidebarOpen }) => {
       <Logo isSidebarOpen={isSidebarOpen} />
       {!isSidebarOpen && <span className="h-[9.75rem] " />}
       <MainNav isSidebarOpen={isSidebarOpen} />
-    </div>
+    </aside>
   );
 };
 

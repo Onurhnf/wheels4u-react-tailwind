@@ -7,22 +7,44 @@ import {
 
 import { GiCartwheel } from "react-icons/gi";
 
-function Icon({ iconName }) {
-  let style =
-    "h-8 w-8 text-emerald-600  transition-all duration-300 group-hover:text-emerald-500 group-active:text-gray-900 group-visited:text-gray-500 group-last:text-red-500 group-hover:group-last:text-red-400";
+function Icon({ iconName, isActiveTab }) {
+  console.log(iconName, isActiveTab);
 
+  const base =
+    "h-6 w-6 transition-all duration-300 group-hover:text-emerald-400  group-visited:text-gray-500 group-last:text-red-100 group-hover:group-last:text-red-400";
+
+  const style = {
+    active: base + " text-emerald-400 ",
+    inActive: base + " text-gray-400 ",
+  };
   switch (iconName) {
     case "dashboard":
-      return <HiOutlineHome className={style} />;
+      return (
+        <HiOutlineHome
+          className={isActiveTab ? style["active"] : style["inActive"]}
+        />
+      );
 
     case "bookings":
-      return <HiOutlineCalendar className={style} />;
+      return (
+        <HiOutlineCalendar
+          className={isActiveTab ? style["active"] : style["inActive"]}
+        />
+      );
 
     case "vehicles":
-      return <GiCartwheel className={style} />;
+      return (
+        <GiCartwheel
+          className={isActiveTab ? style["active"] : style["inActive"]}
+        />
+      );
 
     case "logout":
-      return <HiOutlineLogout className={style} />;
+      return (
+        <HiOutlineLogout
+          className={isActiveTab ? style["active"] : style["inActive"]}
+        />
+      );
 
     default:
       throw Error("There is no icon with that name");

@@ -14,18 +14,16 @@ function VehichleRow({ vehicle }) {
 
   return (
     <Table.Row>
-      <div className=" text-xl font-semibold uppercase">
+      <div className=" text-base font-semibold uppercase text-gray-600">
         {vehicle_type /*TODO (maybe) make this icon */}
       </div>
-      <div className="text-2xl font-semibold capitalize text-gray-600">
-        {make}
-      </div>
-      <div className="text-2xl font-semibold capitalize text-gray-600">
-        {model}
-      </div>
+      <div className=" font-semibold capitalize ">{make}</div>
+      <div className=" font-semibold capitalize ">{model}</div>
       <div className="font-semibold capitalize">{year}</div>
       <div className="font-semibold capitalize">{color}</div>
-      <div className="font-semibold capitalize">{mileage} km</div>
+      <div className="font-semibold capitalize">
+        {mileage ? mileage.toLocaleString() + " km" : "-"}
+      </div>
       <div className="font-semibold capitalize">{rental_rate}₺</div>
     </Table.Row>
   );

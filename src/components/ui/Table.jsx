@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 const StyledTable = ({ children, role }) => (
   <div
     role={role}
-    className="overflow-hidden rounded-md rounded-b-sm border border-gray-600 text-xl"
+    className="overflow-hidden rounded-md rounded-b-sm border border-gray-200 bg-white text-xl"
   >
     {children}
   </div>
@@ -26,7 +26,7 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
 const StyledHeader = ({ columns, children }) => (
   <CommonRow
     columns={columns}
-    className=" border-b border-gray-400 bg-stone-200 px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-600 drop-shadow-sm"
+    className=" border-b border-gray-100 bg-gray-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-gray-600"
   >
     {children}
   </CommonRow>
@@ -36,7 +36,7 @@ const StyledRow = ({ columns, children, role }) => (
   <CommonRow
     role={role}
     columns={columns}
-    className=" border-b border-gray-300 px-6 py-3 first:mt-[-4px] last:mb-[-4px] last:border-b-0 hover:bg-gray-100"
+    className=" border-b border-gray-100 bg-white px-6 py-3 text-sm first:mt-[-4px] last:mb-[-4px] last:border-b-0 hover:bg-stone-50"
   >
     {children}
   </CommonRow>
