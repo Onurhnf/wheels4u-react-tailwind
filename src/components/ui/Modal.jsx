@@ -81,16 +81,16 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <div className="bg fixed left-0 top-0 z-50 h-screen w-full bg-gray-50/5 backdrop-blur-sm transition-all duration-500">
+    <div className="bg fixed left-0 top-0 z-50 h-screen w-full bg-gray-50/5 backdrop-blur-[2px] transition-all duration-500">
       <div
-        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg px-10 py-8 shadow-lg transition-all duration-500"
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  rounded-lg border border-emerald-200 bg-white px-10 py-8 shadow-lg shadow-emerald-300 transition-all duration-500"
         ref={ref}
       >
         <button
           className="absolute right-8 top-5 translate-x-3 rounded-sm border-0 bg-none p-1 transition-all duration-200 hover:bg-gray-200"
           onClick={close}
         >
-          <HiXMark className="h-6 w-6 text-gray-500" />
+          <HiXMark className="h-6 w-6 text-emerald-600" />
         </button>
 
         <div>{cloneElement(children, { onCloseModal: close })}</div>

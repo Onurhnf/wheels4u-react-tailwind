@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Icon from "./Icon.jsx";
 
 function MainNavLi({ to, isSidebarOpen }) {
+  const location = useLocation();
   const [isActiveTab, setIsActiveTab] = useState(false);
 
   const base =
@@ -14,13 +14,16 @@ function MainNavLi({ to, isSidebarOpen }) {
     inActive: base + "",
   };
 
+  useEffect(() => {
+    setIsActiveTab(location.pathname === `/${to}`);
+  }, [location.pathname, to]);
+
   return (
     <li className="group first:mt-2 last:absolute  last:bottom-8 ">
       <NavLink
         end
         to={`/${to}`}
         className={({ isActive }) => {
-          setIsActiveTab(isActive);
           return isActive
             ? isSidebarOpen
               ? style["active"]

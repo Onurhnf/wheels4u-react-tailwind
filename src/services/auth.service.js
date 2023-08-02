@@ -12,12 +12,14 @@ export async function loginApi({ email, password }) {
 }
 
 export async function signUpApi({ fullName, email, password }) {
+  //TODO avatar maybe
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
         full_name: fullName,
+        avatar_url: "",
       },
     },
   });

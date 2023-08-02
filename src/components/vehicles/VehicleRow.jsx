@@ -22,7 +22,7 @@ function VehichleRow({ vehicle }) {
       <div className="font-semibold capitalize">{year}</div>
       <div className="font-semibold capitalize">{color}</div>
       <div className="font-semibold capitalize">
-        {mileage ? mileage.toLocaleString() + " km" : "-"}
+        {mileage ? mileage.toLocaleString() + " km" : `—`}
       </div>
       <div className="font-semibold capitalize">{rental_rate}₺</div>
     </Table.Row>
