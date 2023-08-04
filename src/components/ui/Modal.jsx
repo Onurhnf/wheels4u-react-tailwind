@@ -81,7 +81,7 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <div className="bg fixed left-0 top-0 z-50 h-screen w-full bg-gray-50/5 backdrop-blur-[2px] transition-all duration-500">
+    <div className="fixed left-0 top-0 z-50 h-screen w-full bg-white/5 backdrop-blur-[2px] transition-all duration-500">
       <div
         className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  rounded-lg border border-emerald-200 bg-white px-10 py-8 shadow-lg shadow-emerald-300 transition-all duration-500"
         ref={ref}

@@ -1,4 +1,3 @@
-// src/components/Sidebar.js
 import React from "react";
 import Logo from "./Logo.jsx";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
@@ -8,7 +7,7 @@ const Sidebar = ({ toggleSidebar, isSidebarOpen }) => {
   return (
     <aside
       className={
-        "relative row-span-full flex flex-col items-center border-r border-r-gray-100 bg-white px-6 py-7 text-white  transition-all duration-300"
+        "relative row-span-full flex flex-col items-center border-r border-r-gray-100 bg-white px-6 py-6 text-white  transition-all duration-300"
       }
     >
       <button

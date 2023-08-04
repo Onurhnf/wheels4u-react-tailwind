@@ -3,7 +3,7 @@ function Logo({ isSidebarOpen }) {
 
   return (
     isSidebarOpen && (
-      <div className="mt-3 text-center transition-all md:block">
+      <div className=" text-center transition-all md:block">
         <img className="h-36 w-auto" src={src} alt="Logo" />
       </div>
     )

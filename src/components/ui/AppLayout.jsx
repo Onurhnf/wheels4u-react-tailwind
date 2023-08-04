@@ -25,7 +25,7 @@ function AppLayout() {
       <Header />
       <Sidebar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <main className=" overflow-scroll bg-gray-50 p-[4rem_4.8rem_6.4rem]">
-        <div className="m-[0px_auto] flex max-w-6xl flex-col gap-[3.2rem]">
+        <div className="m-[0px_auto] flex max-w-7xl flex-col gap-[3.2rem]">
           <Outlet />
         </div>
       </main>

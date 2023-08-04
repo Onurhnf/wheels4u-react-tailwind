@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useCreateVehicle } from "./hooks/useCreateVehicle.js";
 import { useEditVehicle } from "./hooks/useEditVehicle.js";
-import Form from "./../ui/Form.jsx";
-import FormRow from "./../ui/FormRow.jsx";
+import Form from "../ui/Form.jsx";
+import FormRow from "../ui/FormRow.jsx";
 import Button from "../ui/Button.jsx";
 
-function CreateVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
+function CreateEditVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
   const { isCreating, createVehicle } = useCreateVehicle();
   const { isEditing, editVehicle } = useEditVehicle();
   const isWorking = isCreating || isEditing;
@@ -29,9 +29,7 @@ function CreateVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
           },
         },
       );
-    else {
-      console.log(data);
-
+    else
       createVehicle(
         { ...data },
         {
@@ -41,7 +39,6 @@ function CreateVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
           },
         },
       );
-    }
   }
 
   function onError(errors) {
@@ -186,11 +183,11 @@ function CreateVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button variant={"small"} disabled={isWorking}>
-          {isEditSession ? "Edit vehicle" : "Create new vehicle"}
+          {isEditSession ? "Edit Wheel" : "Create new Wheel"}
         </Button>
       </FormRow>
     </Form>
   );
 }
 
-export default CreateVehicleForm;
+export default CreateEditVehicleForm;

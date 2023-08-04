@@ -1,6 +1,6 @@
 import Modal from "../ui/Modal.jsx";
 import Button from "../ui/Button.jsx";
-import CreateVehicleForm from "./CreateVehicleForm.jsx";
+import CreateEditVehicleForm from "./CreateEditVehicleForm.jsx";
 
 function AddVehicle() {
   return (
@@ -10,7 +10,7 @@ function AddVehicle() {
           <Button variant={"small"}>Add new wheel</Button>
         </Modal.Open>
         <Modal.Window name="vehicle-form">
-          <CreateVehicleForm />
+          <CreateEditVehicleForm />
         </Modal.Window>
       </Modal>
     </div>

@@ -33,3 +33,14 @@ export async function createEditVehicle(newVehicles, id) {
 
   return data;
 }
+
+export async function deleteVehicle(id) {
+  const { data, error } = await supabase.from("vehicles").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Vehicle could not be deleted");
+  }
+
+  return data;
+}

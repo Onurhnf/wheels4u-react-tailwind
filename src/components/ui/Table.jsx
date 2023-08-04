@@ -10,10 +10,10 @@ const StyledTable = ({ children, role }) => (
 );
 
 const CommonRow = ({ columns, className, children, role = "row" }) => {
-  const base = "grid items-center gap-x-6 transition-none" + className;
+  const base = "grid items-center  transition-none " + className;
 
   const styles = {
-    vehicleList: base + " grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr_1.2fr]",
+    vehicleList: base + " grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr_1fr_0.2fr]",
     bookingList: base + " grid-cols-7",
   };
 
@@ -26,7 +26,7 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
 const StyledHeader = ({ columns, children }) => (
   <CommonRow
     columns={columns}
-    className=" border-b border-gray-100 bg-gray-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-gray-600"
+    className="  border-b border-gray-100 bg-gray-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-gray-600"
   >
     {children}
   </CommonRow>

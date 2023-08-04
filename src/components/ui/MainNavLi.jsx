@@ -7,7 +7,7 @@ function MainNavLi({ to, isSidebarOpen }) {
   const [isActiveTab, setIsActiveTab] = useState(false);
 
   const base =
-    "flex items-center gap-5 overflow-hidden  px-9 py-3 font-medium text-gray-700 rounded-xl md:rounded-sm hover:bg-gray-50 hover:text-gray-800 ";
+    "flex items-center gap-5 overflow-hidden  pr-14 pl-6 py-3 font-medium text-gray-700 rounded-xl md:rounded-sm hover:bg-gray-50 hover:text-gray-800 ";
 
   const style = {
     active: base + " bg-stone-100",
