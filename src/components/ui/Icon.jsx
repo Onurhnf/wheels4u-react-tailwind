@@ -4,6 +4,7 @@ import {
   HiOutlineCalendar,
   HiOutlineLogout,
 } from "react-icons/hi";
+import { FaUsers } from "react-icons/fa";
 import { GiCartwheel } from "react-icons/gi";
 
 function Icon({ iconName, isActiveTab }) {
@@ -11,6 +12,7 @@ function Icon({ iconName, isActiveTab }) {
     dashboard: HiOutlineHome,
     bookings: HiOutlineCalendar,
     vehicles: GiCartwheel,
+    crm: FaUsers,
     logout: HiOutlineLogout,
   };
 

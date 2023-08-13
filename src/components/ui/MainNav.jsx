@@ -7,6 +7,7 @@ function MainNav({ isSidebarOpen }) {
         <MainNavLi to={"dashboard"} isSidebarOpen={isSidebarOpen} />
         <MainNavLi to={"bookings"} isSidebarOpen={isSidebarOpen} />
         <MainNavLi to={"wheels"} isSidebarOpen={isSidebarOpen} />
+        <MainNavLi to={"crm"} isSidebarOpen={isSidebarOpen} />
         <MainNavLi to={"logout"} isSidebarOpen={isSidebarOpen} />
       </ul>
     </nav>

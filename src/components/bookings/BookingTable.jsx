@@ -9,6 +9,7 @@ function BookingTable() {
 
   if (isLoading) return <Loader />;
   //TODO handle total cost, user and date type
+
   return (
     <Table columns="bookingList">
       <Table.Header>
