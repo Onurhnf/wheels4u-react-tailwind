@@ -5,6 +5,10 @@ export async function getBookings() {
   *,
   vehicles (
     vehicle_type
+  ),
+  profiles (
+    full_name,
+    email
   )
 `);
 

@@ -3,7 +3,7 @@ import Stack from "../ui/Stack.jsx";
 import Filter from "../ui/Filter.jsx";
 import SortBy from "../ui/SortBy.jsx";
 
-function VehicleTableOperations() {
+function BookingTableOperations() {
   return (
     <Stack type={"horizontal"}>
       <Filter
@@ -17,10 +17,6 @@ function VehicleTableOperations() {
 
       <SortBy
         options={[
-          { value: "make-asc", label: "Sort by Make (A-Z)" },
-          { value: "make-desc", label: "Sort by Make (Z-A)" },
-          { value: "model-asc", label: "Sort by Model (A-Z)" },
-          { value: "model-desc", label: "Sort by Model (Z-A)" },
           { value: "rental_rate-asc", label: "Sort by price (low first)" },
           { value: "rental_rate-desc", label: "Sort by price (high first)" },
           { value: "mileage-asc", label: "Sort by mileage (low first)" },
@@ -33,4 +29,4 @@ function VehicleTableOperations() {
   );
 }
 
-export default VehicleTableOperations;
+export default BookingTableOperations;
