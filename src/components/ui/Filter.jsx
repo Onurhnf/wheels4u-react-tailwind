@@ -14,12 +14,12 @@ function Filter({ filterField, options }) {
   return (
     <div
       role="group"
-      className="flex gap-1 rounded-md border border-gray-100  bg-white p-1 shadow-sm"
+      className="flex gap-[2px] rounded-md border border-gray-100  bg-white p-1 shadow-sm"
     >
       {options.map((option) => (
         <button
           className={
-            "rounded-md border px-2 py-1 text-base font-medium transition-all duration-300 hover:bg-emerald-500 hover:text-gray-50 disabled:border-none  disabled:bg-emerald-500 disabled:text-gray-50 "
+            "rounded-md  px-2 py-1 text-sm font-medium transition-all duration-300 hover:bg-emerald-500 hover:text-gray-50 disabled:border-none  disabled:bg-emerald-500 disabled:text-gray-50 "
           }
           disabled={option.value === currentFilter}
           key={option.value}

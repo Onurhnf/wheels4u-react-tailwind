@@ -7,22 +7,30 @@ function BookingTableOperations() {
   return (
     <Stack type={"horizontal"}>
       <Filter
-        filterField="type"
+        filterField="status"
         options={[
           { value: "all", label: "All" },
-          { value: "bike", label: "Bike" },
-          { value: "car", label: "Car" },
+          { value: "unconfirmed", label: "Unconfirmed" },
+          { value: "picked-up", label: "Picked Up" },
+          { value: "returned", label: "Returned" },
         ]}
       />
 
       <SortBy
         options={[
-          { value: "rental_rate-asc", label: "Sort by price (low first)" },
-          { value: "rental_rate-desc", label: "Sort by price (high first)" },
-          { value: "mileage-asc", label: "Sort by mileage (low first)" },
-          { value: "mileage-desc", label: "Sort by mileage (high first)" },
-          { value: "year-asc", label: "Sort by Year (low first)" },
-          { value: "year-desc", label: "Sort by Year (high first)" },
+          {
+            value: "booking_date-asc",
+            label: "Sort by Booking Date (recent first)",
+          },
+          {
+            value: "booking_date-desc",
+            label: "Sort by Booking Date (oldest first)",
+          },
+          { value: "total_cost-asc", label: "Sort by Total Cost (low first)" },
+          {
+            value: "total_cost-desc",
+            label: "Sort by Total Cost (high first)",
+          },
         ]}
       />
     </Stack>

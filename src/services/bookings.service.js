@@ -1,7 +1,8 @@
 import supabase from "./supabase.js";
 
 export async function getBookings() {
-  const { data, error } = await supabase.from("bookings").select(`
+  const { data, error, count } = await supabase.from("bookings").select(
+    `
   *,
   vehicles (
     vehicle_type
@@ -10,12 +11,14 @@ export async function getBookings() {
     full_name,
     email
   )
-`);
+`,
+    { count: "exact" },
+  );
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not be loaded");
   }
 
-  return data;
+  return { data, count };
 }

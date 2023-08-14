@@ -4,29 +4,37 @@ import Table from "../ui/Table.jsx";
 import BookingRow from "./BookingRow.jsx";
 import Loader from "../ui/Loader.jsx";
 import { useSearchParams } from "react-router-dom";
+import Pagination from "../ui/Pagination.jsx";
 
 function BookingTable() {
-  const { isLoading, error, bookings } = useBookings();
+  const { isLoading, error, bookings, count } = useBookings();
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Loader />;
-  //TODO handle  user and date
 
-  const filterValue = searchParams.get("type") || "all";
+  const filterValue = searchParams.get("status") || "all";
 
   // Filter
-  let filteredBookings;
-  if (filterValue === "all") filteredBookings = bookings;
+  const filteredBookings =
+    filterValue === "all"
+      ? bookings
+      : bookings.filter((booking) => booking.status === filterValue);
 
-  if (filterValue === "bike")
-    filteredBookings = bookings.filter(
-      (booking) => booking.vehicles.vehicle_type === "bike",
-    );
+  const sortBy = searchParams.get("sortBy") || "booking_date-asc";
+  const [field, direction] = sortBy.split("-");
+  const modifier = direction === "asc" ? 1 : -1;
 
-  if (filterValue === "car")
-    filteredBookings = bookings.filter(
-      (booking) => booking.vehicles.vehicle_type === "car",
+  // Sort
+  let sortedBookings;
+  if (field === "booking_date") {
+    sortedBookings = filteredBookings.sort(
+      (a, b) => ("" + a[field]).localeCompare(b[field]) * -modifier,
     );
+  } else {
+    sortedBookings = filteredBookings.sort(
+      (a, b) => (a[field] - b[field]) * modifier,
+    );
+  }
 
   return (
     <Table columns="bookingList">
@@ -40,9 +48,12 @@ function BookingTable() {
         <div>Total Cost</div>
       </Table.Header>
       <Table.Body
-        data={filteredBookings}
+        data={sortedBookings}
         render={(booking) => <BookingRow booking={booking} key={booking.id} />}
       />
+      <Table.Footer>
+        <Pagination count={count} />
+      </Table.Footer>
     </Table>
   );
 }

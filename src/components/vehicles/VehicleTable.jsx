@@ -14,18 +14,10 @@ function VehicleTable() {
   const filterValue = searchParams.get("type") || "all";
 
   // Filter
-  let filteredVehicles;
-  if (filterValue === "all") filteredVehicles = vehicles;
-
-  if (filterValue === "bike")
-    filteredVehicles = vehicles.filter(
-      (vehicle) => vehicle.vehicle_type === "bike",
-    );
-
-  if (filterValue === "car")
-    filteredVehicles = vehicles.filter(
-      (vehicle) => vehicle.vehicle_type === "car",
-    );
+  const filteredVehicles =
+    filterValue === "all"
+      ? vehicles
+      : vehicles.filter((vehicle) => vehicle.vehicle_type === filterValue);
 
   // 2) SORT
   const sortBy = searchParams.get("sortBy") || "startDate-asc";

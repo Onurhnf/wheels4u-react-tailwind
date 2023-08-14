@@ -22,7 +22,7 @@ function VehichleRow({ vehicle }) {
 
   return (
     <Table.Row>
-      <div className=" text-base font-semibold uppercase text-gray-600">
+      <div className=" font-semibold uppercase text-gray-600">
         {vehicle_type /*TODO (maybe) make this icon */}
       </div>
       <div className=" font-semibold capitalize ">{make}</div>
