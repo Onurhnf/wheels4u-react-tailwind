@@ -3,39 +3,13 @@ import { useBookings } from "./hooks/useBookings.js";
 import Table from "../ui/Table.jsx";
 import BookingRow from "./BookingRow.jsx";
 import Loader from "../ui/Loader.jsx";
-import { useSearchParams } from "react-router-dom";
 import Pagination from "../ui/Pagination.jsx";
 
 function BookingTable() {
   const { isLoading, error, bookings, count } = useBookings();
-  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Loader />;
-
-  const filterValue = searchParams.get("status") || "all";
-
-  // Filter
-  const filteredBookings =
-    filterValue === "all"
-      ? bookings
-      : bookings.filter((booking) => booking.status === filterValue);
-
-  const sortBy = searchParams.get("sortBy") || "booking_date-asc";
-  const [field, direction] = sortBy.split("-");
-  const modifier = direction === "asc" ? 1 : -1;
-
-  // Sort
-  let sortedBookings;
-  if (field === "booking_date") {
-    sortedBookings = filteredBookings.sort(
-      (a, b) => ("" + a[field]).localeCompare(b[field]) * -modifier,
-    );
-  } else {
-    sortedBookings = filteredBookings.sort(
-      (a, b) => (a[field] - b[field]) * modifier,
-    );
-  }
-
+  //TODO
   return (
     <Table columns="bookingList">
       <Table.Header>
@@ -48,7 +22,7 @@ function BookingTable() {
         <div>Total Cost</div>
       </Table.Header>
       <Table.Body
-        data={sortedBookings}
+        data={bookings}
         render={(booking) => <BookingRow booking={booking} key={booking.id} />}
       />
       <Table.Footer>

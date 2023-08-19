@@ -7,7 +7,7 @@ function VehicleTableOperations() {
   return (
     <Stack type={"horizontal"}>
       <Filter
-        filterField="type"
+        filterField="vehicle_type"
         options={[
           { value: "all", label: "All" },
           { value: "bike", label: "Bike" },
@@ -25,8 +25,8 @@ function VehicleTableOperations() {
           { value: "rental_rate-desc", label: "Sort by price (high first)" },
           { value: "mileage-asc", label: "Sort by mileage (low first)" },
           { value: "mileage-desc", label: "Sort by mileage (high first)" },
-          { value: "year-asc", label: "Sort by Year (low first)" },
-          { value: "year-desc", label: "Sort by Year (high first)" },
+          { value: "year-asc", label: "Sort by Year (oldest first)" },
+          { value: "year-desc", label: "Sort by Year (recent first)" },
         ]}
       />
     </Stack>

@@ -1,44 +1,8 @@
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
-
-// const PaginationButton = styled.button`
-//   background-color: ${(props) =>
-//     props.active ? " var(--color-brand-600)" : "var(--color-grey-50)"};
-//   color: ${(props) => (props.active ? " var(--color-brand-50)" : "inherit")};
-
-//   border: none;
-//   border-radius: var(--border-radius-sm);
-//   font-weight: 500;
-//   font-size: 1.4rem;
-
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   gap: 0.4rem;
-//   padding: 0.6rem 1.2rem;
-//   transition: all 0.3s;
-
-//   &:has(span:last-child) {
-//     padding-left: 0.4rem;
-//   }
-
-//   &:has(span:first-child) {
-//     padding-right: 0.4rem;
-//   }
-
-//   & svg {
-//     height: 1.8rem;
-//     width: 1.8rem;
-//   }
-
-//   &:hover:not(:disabled) {
-//     background-color: var(--color-brand-600);
-//     color: var(--color-brand-50);
-//   }
-// `;
+import { PAGE_SIZE } from "../../utils/constants.js";
 
 function Pagination({ count }) {
-  const PAGE_SIZE = 10;
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
@@ -63,7 +27,7 @@ function Pagination({ count }) {
   //   if (pageCount <= 1) return null;
 
   const PaginationButtonStyle =
-    "flex items-center justify-center gap-1 rounded-sm border-none px-2  py-1 text-base font-medium transition-all  duration-300 hover:bg-emerald-300 hover:text-emerald-50  disabled:text-stone-200 disabled:hover:bg-gray-50";
+    "flex items-center justify-center gap-1 rounded-md border-none px-2  py-1 text-base font-medium transition-all  duration-300 hover:bg-emerald-500 hover:text-emerald-50  disabled:text-stone-200 disabled:hover:bg-gray-50";
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -78,7 +42,7 @@ function Pagination({ count }) {
         </span>{" "}
         of <span className="font-semibold">{count}</span> results
       </p>
-
+      <p className="text-sm font-semibold ">{currentPage}</p>
       <div role="group" className="mr-2 flex gap-1">
         <button
           className={PaginationButtonStyle}

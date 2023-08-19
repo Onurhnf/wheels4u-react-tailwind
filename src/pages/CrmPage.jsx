@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Stack from "../components/ui/Stack.jsx";
 import CrmTable from "../components/crm/CrmTable.jsx";
 
 function CrmPage() {
+  useEffect(() => {
+    document.title = "CRM - Wheels 4U";
+
+    return () => {
+      document.title = "Wheels 4U";
+    };
+  }, []);
+
   //TODO handle this user limitation..
 
   return (

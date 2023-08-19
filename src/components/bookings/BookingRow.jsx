@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "../ui/Table.jsx";
-import { format, formatISO, parse, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import Stack from "../ui/Stack.jsx";
 import { differenceInDays } from "date-fns/esm";
 import StatusBadge from "../ui/StatusBadge.jsx";
@@ -50,7 +50,8 @@ function BookingRow({ booking }) {
         </Stack>
       </div>
       <StatusBadge type={status}>{status.replace("-", " ")}</StatusBadge>
-      <div className=" font-semibold">{total_cost}₺</div>
+      <div className=" font-semibold text-emerald-700">{total_cost}₺</div>
+      {/*TODO add options modals */}
     </Table.Row>
   );
 }
