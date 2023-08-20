@@ -14,7 +14,7 @@ const CommonRow = ({ columns, className, children, role = "row" }) => {
 
   const styles = {
     vehicleList: base + " grid-cols-[0.5fr_1fr_1fr_1fr_1fr_1fr_1fr_0.2fr]",
-    bookingList: base + " grid-cols-6",
+    bookingList: base + " grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_0.2fr]",
     crmList: base + " grid-cols-3",
   };
 

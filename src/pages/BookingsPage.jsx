@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import BookingTable from "../components/bookings/BookingTable.jsx";
 import Stack from "../components/ui/Stack.jsx";
 import BookingTableOperations from "../components/bookings/BookingTableOperations.jsx";
+import AddBooking from "../components/bookings/AddBooking.jsx";
 
 function BookingsPage() {
   useEffect(() => {
@@ -20,6 +21,7 @@ function BookingsPage() {
       </Stack>
       <Stack>
         <BookingTable />
+        <AddBooking />
       </Stack>
     </>
   );

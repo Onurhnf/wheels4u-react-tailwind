@@ -4,6 +4,12 @@ import { format, parseISO } from "date-fns";
 import Stack from "../ui/Stack.jsx";
 import { differenceInDays } from "date-fns/esm";
 import StatusBadge from "../ui/StatusBadge.jsx";
+import Modal from "../ui/Modal.jsx";
+import Menu from "../ui/Menu.jsx";
+import { HiPencil, HiTrash } from "react-icons/hi2";
+import CreateEditVehicleForm from "../vehicles/CreateEditVehicleForm.jsx";
+import CreateEditBookingForm from "./CreateEditBookingForm.jsx";
+import VehiclesPage from "../../pages/VehiclesPage.jsx";
 
 function BookingRow({ booking }) {
   const {
@@ -51,7 +57,25 @@ function BookingRow({ booking }) {
       </div>
       <StatusBadge type={status}>{status.replace("-", " ")}</StatusBadge>
       <div className=" font-semibold text-emerald-700">{total_cost}₺</div>
-      {/*TODO add options modals */}
+      <div>
+        <Modal>
+          <div className="flex items-center  justify-end">
+            <Menu.Toggle id={bookingId} />
+
+            <Menu.List id={bookingId}>
+              <Modal.Open opens="edit">
+                <Menu.Button icon={<HiPencil className="text-emerald-600" />}>
+                  Edit
+                </Menu.Button>
+              </Modal.Open>
+            </Menu.List>
+
+            <Modal.Window name="edit">
+              <CreateEditBookingForm bookingToEdit={booking} />
+            </Modal.Window>
+          </div>
+        </Modal>
+      </div>
     </Table.Row>
   );
 }

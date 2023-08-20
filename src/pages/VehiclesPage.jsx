@@ -5,7 +5,11 @@ import VehicleTable from "../components/vehicles/VehicleTable.jsx";
 import AddVehicle from "../components/vehicles/AddVehicle.jsx";
 import VehicleTableOperations from "../components/vehicles/VehicleTableOperations.jsx";
 
-function VehiclesPage() {
+function VehiclesPage({
+  chooseable = false,
+  setSelectedVehicle = null,
+  onCloseModal,
+}) {
   useEffect(() => {
     document.title = "Wheels - Wheels 4U";
 
@@ -17,12 +21,20 @@ function VehiclesPage() {
   return (
     <>
       <Stack type={"horizontal"}>
-        <p className="text-3xl font-semibold text-gray-700">All Wheels</p>
-        <VehicleTableOperations />
+        {!chooseable && (
+          <p className="text-3xl font-semibold text-gray-700">All Wheels</p>
+        )}
+        <div style={{ marginBottom: chooseable ? "10px" : "0px" }}>
+          <VehicleTableOperations />
+        </div>
       </Stack>
       <Stack>
-        <VehicleTable />
-        <AddVehicle />
+        <VehicleTable
+          chooseable={chooseable}
+          setSelectedVehicle={setSelectedVehicle}
+          onCloseModal={onCloseModal}
+        />
+        {!chooseable && <AddVehicle />}
       </Stack>
     </>
   );

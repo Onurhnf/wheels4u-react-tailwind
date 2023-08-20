@@ -4,6 +4,7 @@ import Table from "../ui/Table.jsx";
 import BookingRow from "./BookingRow.jsx";
 import Loader from "../ui/Loader.jsx";
 import Pagination from "../ui/Pagination.jsx";
+import Menu from "../ui/Menu.jsx";
 
 function BookingTable() {
   const { isLoading, error, bookings, count } = useBookings();
@@ -11,24 +12,28 @@ function BookingTable() {
   if (isLoading) return <Loader />;
   //TODO
   return (
-    <Table columns="bookingList">
-      <Table.Header>
-        <div>Type</div>
-        <div>User</div>
-        <div>Booking Date</div>
-        <div>Rental Duration</div>
-        <div>Status</div>
+    <Menu>
+      <Table columns="bookingList">
+        <Table.Header>
+          <div>Type</div>
+          <div>User</div>
+          <div>Booking Date</div>
+          <div>Rental Duration</div>
+          <div>Status</div>
 
-        <div>Total Cost</div>
-      </Table.Header>
-      <Table.Body
-        data={bookings}
-        render={(booking) => <BookingRow booking={booking} key={booking.id} />}
-      />
-      <Table.Footer>
-        <Pagination count={count} />
-      </Table.Footer>
-    </Table>
+          <div>Total Cost</div>
+        </Table.Header>
+        <Table.Body
+          data={bookings}
+          render={(booking) => (
+            <BookingRow booking={booking} key={booking.id} />
+          )}
+        />
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
+      </Table>
+    </Menu>
   );
 }
 

@@ -6,7 +6,7 @@ import { useVehicles } from "./hooks/useVehicles.js";
 import Menu from "../ui/Menu.jsx";
 import Pagination from "../ui/Pagination.jsx";
 
-function VehicleTable({}) {
+function VehicleTable({ chooseable, setSelectedVehicle, onCloseModal }) {
   const { isLoading, error, count, vehicles } = useVehicles();
 
   if (isLoading) return <Loader />;
@@ -26,7 +26,13 @@ function VehicleTable({}) {
         <Table.Body
           data={vehicles}
           render={(vehicle) => (
-            <VehichleRow vehicle={vehicle} key={vehicle.id} />
+            <VehichleRow
+              vehicle={vehicle}
+              key={vehicle.id}
+              chooseable={chooseable}
+              setSelectedVehicle={setSelectedVehicle}
+              onCloseModal={onCloseModal}
+            />
           )}
         />
         <Table.Footer>

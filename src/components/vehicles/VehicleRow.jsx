@@ -5,8 +5,14 @@ import CreateEditVehicleForm from "./CreateEditVehicleForm.jsx";
 import Menu from "../ui/Menu.jsx";
 import DeleteConfirmer from "../ui/DeleteConfirmer.jsx";
 import { useDeleteVehicle } from "./hooks/useDeleteVehicle.js";
+import Button from "../ui/Button.jsx";
 
-function VehichleRow({ vehicle }) {
+function VehichleRow({
+  vehicle,
+  chooseable,
+  setSelectedVehicle,
+  onCloseModal,
+}) {
   const { isDeleting, deleteVehicle } = useDeleteVehicle();
 
   const {
@@ -33,39 +39,51 @@ function VehichleRow({ vehicle }) {
         {mileage ? mileage.toLocaleString() + " km" : `—`}
       </div>
       <div className="font-semibold capitalize">{rental_rate}₺</div>
-      <div>
-        <Modal>
-          <div className="flex items-center  justify-end">
-            <Menu.Toggle id={vehicleId} />
+      {!chooseable ? (
+        <div>
+          <Modal>
+            <div className="flex items-center  justify-end">
+              <Menu.Toggle id={vehicleId} />
 
-            <Menu.List id={vehicleId}>
-              <Modal.Open opens="edit">
-                <Menu.Button icon={<HiPencil className="text-emerald-600" />}>
-                  Edit
-                </Menu.Button>
-              </Modal.Open>
+              <Menu.List id={vehicleId}>
+                <Modal.Open opens="edit">
+                  <Menu.Button icon={<HiPencil className="text-emerald-600" />}>
+                    Edit
+                  </Menu.Button>
+                </Modal.Open>
 
-              <Modal.Open opens="delete">
-                <Menu.Button icon={<HiTrash className="text-emerald-600" />}>
-                  Delete
-                </Menu.Button>
-              </Modal.Open>
-            </Menu.List>
+                <Modal.Open opens="delete">
+                  <Menu.Button icon={<HiTrash className="text-emerald-600" />}>
+                    Delete
+                  </Menu.Button>
+                </Modal.Open>
+              </Menu.List>
 
-            <Modal.Window name="edit">
-              <CreateEditVehicleForm vehicleToEdit={vehicle} />
-            </Modal.Window>
+              <Modal.Window name="edit">
+                <CreateEditVehicleForm vehicleToEdit={vehicle} />
+              </Modal.Window>
 
-            <Modal.Window name="delete">
-              <DeleteConfirmer
-                type="wheel"
-                disabled={isDeleting}
-                onConfirm={() => deleteVehicle(vehicleId)}
-              />
-            </Modal.Window>
-          </div>
-        </Modal>
-      </div>
+              <Modal.Window name="delete">
+                <DeleteConfirmer
+                  type="wheel"
+                  disabled={isDeleting}
+                  onConfirm={() => deleteVehicle(vehicleId)}
+                />
+              </Modal.Window>
+            </div>
+          </Modal>
+        </div>
+      ) : (
+        <Button
+          variant={"small"}
+          onClick={() => {
+            setSelectedVehicle(vehicleId);
+            onCloseModal();
+          }}
+        >
+          Choose
+        </Button>
+      )}
     </Table.Row>
   );
 }
