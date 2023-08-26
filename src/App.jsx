@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ui/ProtectedRoute.jsx";
 import Logout from "./components/auth/Logout.jsx";
 import PageNotFound from "./pages/404.jsx";
 import CrmPage from "./pages/CrmPage.jsx";
+import RentPage from "./pages/RentPage.jsx";
 
 function App() {
   const queryClient = new QueryClient({
@@ -38,6 +39,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="bookings" element={<BookingsPage />} />
             <Route path="wheels" element={<VehiclesPage />} />
+            <Route path="rent/:bookingId" element={<RentPage />} />
             <Route path="crm" element={<CrmPage />} />
             <Route path="logout" element={<Logout />} />
           </Route>

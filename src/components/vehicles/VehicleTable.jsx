@@ -13,7 +13,7 @@ function VehicleTable({ chooseable, setSelectedVehicle, onCloseModal }) {
 
   return (
     <Menu>
-      <Table columns="vehicleList">
+      <Table columns={chooseable ? "vehicleListChoosable" : "vehicleList"}>
         <Table.Header>
           <div>Type</div>
           <div>Make</div>

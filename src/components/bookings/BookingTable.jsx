@@ -10,11 +10,12 @@ function BookingTable() {
   const { isLoading, error, bookings, count } = useBookings();
 
   if (isLoading) return <Loader />;
-  //TODO
+
   return (
     <Menu>
       <Table columns="bookingList">
         <Table.Header>
+          <div>#</div>
           <div>Type</div>
           <div>User</div>
           <div>Booking Date</div>

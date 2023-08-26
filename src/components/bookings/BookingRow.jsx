@@ -6,12 +6,15 @@ import { differenceInDays } from "date-fns/esm";
 import StatusBadge from "../ui/StatusBadge.jsx";
 import Modal from "../ui/Modal.jsx";
 import Menu from "../ui/Menu.jsx";
-import { HiPencil, HiTrash } from "react-icons/hi2";
-import CreateEditVehicleForm from "../vehicles/CreateEditVehicleForm.jsx";
-import CreateEditBookingForm from "./CreateEditBookingForm.jsx";
-import VehiclesPage from "../../pages/VehiclesPage.jsx";
+import { HiPencil } from "react-icons/hi2";
+import { GiConfirmed, GiReturnArrow } from "react-icons/gi";
+import CreateBookingForm from "./CreateBookingForm.jsx";
+import ConfirmHandler from "../ui/ConfirmHandler.jsx";
+import { useNavigate } from "react-router-dom";
 
 function BookingRow({ booking }) {
+  const navigate = useNavigate();
+
   const {
     id: bookingId,
     vehicles,
@@ -29,6 +32,7 @@ function BookingRow({ booking }) {
 
   return (
     <Table.Row>
+      <div className="  font-semibold uppercase text-gray-600">{bookingId}</div>
       <div className="  font-semibold uppercase text-gray-600">
         {vehicles?.vehicle_type}
       </div>
@@ -68,10 +72,38 @@ function BookingRow({ booking }) {
                   Edit
                 </Menu.Button>
               </Modal.Open>
+
+              {status === "unconfirmed" && (
+                <Menu.Button
+                  icon={<GiConfirmed className="text-emerald-600" />}
+                  onClick={() => navigate(`/rent/${bookingId}`)}
+                >
+                  Confirm
+                </Menu.Button>
+              )}
+
+              {status === "picked-up" && (
+                <Modal.Open opens="picked-up">
+                  <Menu.Button
+                    icon={<GiReturnArrow className="text-emerald-600" />}
+                  >
+                    Returned
+                  </Menu.Button>
+                </Modal.Open>
+              )}
             </Menu.List>
 
             <Modal.Window name="edit">
-              <CreateEditBookingForm bookingToEdit={booking} />
+              <CreateBookingForm bookingToEdit={booking} />
+            </Modal.Window>
+            <Modal.Window name="picked-up">
+              <ConfirmHandler
+                type={"picked-up"}
+                disabled={false}
+                header={"Returned"}
+                title={`Is this wheel returned and ${profiles?.full_name} paid total cost (${total_cost}₺) ?`}
+                onConfirm={() => {}}
+              />
             </Modal.Window>
           </div>
         </Modal>

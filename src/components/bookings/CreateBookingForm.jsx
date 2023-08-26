@@ -1,32 +1,37 @@
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 
+import Select from "react-select";
 import Form from "../ui/Form.jsx";
 import FormRow from "../ui/FormRow.jsx";
 import Button from "../ui/Button.jsx";
 import { useCreateBooking } from "./hooks/useCreateBooking.js";
-import { useEditVehicle } from "../vehicles/hooks/useEditVehicle.js";
 import { useCrm } from "../crm/hooks/useCrm.js";
 import Modal from "../ui/Modal.jsx";
 import VehiclesPage from "../../pages/VehiclesPage.jsx";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
-function CreateEditBookingForm({ bookingToEdit = {}, onCloseModal }) {
+import { FiCheckCircle, FiXCircle } from "react-icons/fi";
+
+function CreateBookingForm({ onCloseModal }) {
   const { users } = useCrm();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [isPaid, setIsPaid] = useState(false);
   const { isCreating, createBooking } = useCreateBooking();
-  const { isEditing, editVehicle } = useEditVehicle();
 
-  const isWorking = isCreating; //|| isEditing;
-  const { id: editId, ...editValues } = bookingToEdit;
-  const isEditSession = Boolean(editId);
+  const isWorking = isCreating;
 
-  const { register, handleSubmit, getValues, reset, formState, setValue } =
-    useForm({
-      defaultValues: isEditSession ? editValues : {},
-    });
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState,
+    setValue,
+    control,
+  } = useForm();
   const { errors } = formState;
 
   useEffect(() => {
@@ -36,30 +41,25 @@ function CreateEditBookingForm({ bookingToEdit = {}, onCloseModal }) {
   useEffect(() => {
     return () => {
       setSearchParams({});
+      document.title = "Bookings - Wheels 4U";
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onSubmit(data) {
-    if (isEditSession)
-      editVehicle(
-        { newVehicleData: { ...data }, id: editId },
-        {
-          onSuccess: (data) => {
-            reset();
-            onCloseModal?.();
-          },
+    const formData = {
+      ...data,
+      user_id: data.user_id.value,
+    };
+    createBooking(
+      { ...formData },
+      {
+        onSuccess: (formData) => {
+          reset();
+          onCloseModal?.();
         },
-      );
-    else
-      createBooking(
-        { ...data },
-        {
-          onSuccess: (data) => {
-            reset();
-            onCloseModal?.();
-          },
-        },
-      );
+      },
+    );
   }
 
   function onError(errors) {
@@ -76,21 +76,25 @@ function CreateEditBookingForm({ bookingToEdit = {}, onCloseModal }) {
         label="Booker email"
         error={errors?.user_id?.message}
       >
-        <select
-          id="user_id"
-          className="input"
-          disabled={isWorking}
-          {...register("user_id", {
-            required: "This field is required",
-          })}
-        >
-          <option value={""}>Choose a user</option>
-          {users?.map((user, i) => (
-            <option key={i} value={user.id}>
-              {user.email}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="user_id"
+          control={control}
+          rules={{ required: "User must be selected" }}
+          render={({ field }) => (
+            <Select
+              id="user_id"
+              isSearchable
+              isClearable
+              className=" text-xs font-semibold  tracking-wide disabled:cursor-not-allowed "
+              options={users?.map((user) => ({
+                value: user.id,
+                label: user.email,
+              }))}
+              isDisabled={isWorking}
+              {...field}
+            />
+          )}
+        />
       </FormRow>
 
       <FormRow
@@ -180,27 +184,32 @@ function CreateEditBookingForm({ bookingToEdit = {}, onCloseModal }) {
         label="Is Paid?"
         error={errors?.isPaid?.message}
       >
-        <label class="relative inline-flex cursor-pointer items-center">
+        <label className="relative inline-flex cursor-pointer items-center">
           <input
             type="checkbox"
             className="peer sr-only"
             disabled={isWorking}
             {...register("isPaid", {})}
+            onChange={(e) => setIsPaid(e.target.checked)}
           />
-          <div class="peer-focus:ring-blue-30 peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 dark:peer-focus:ring-blue-800"></div>
-          <span class="ml-3 text-sm font-medium text-gray-900 ">
-            Checked toggle
-          </span>
+          <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-emerald-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-emerald-200 dark:peer-focus:ring-emerald-800"></div>
+
+          {isPaid ? (
+            <>
+              <FiCheckCircle className="ml-3 font-semibold text-emerald-600" />
+              <span className="ml-3 text-sm font-medium text-emerald-500">
+                Paid
+              </span>
+            </>
+          ) : (
+            <>
+              <FiXCircle className="ml-3 font-semibold text-red-300" />
+              <span className="ml-3 text-sm font-medium text-red-200">
+                Not Paid
+              </span>
+            </>
+          )}
         </label>
-        {/* <input
-          id="isPaid"
-          type="checkbox"
-          className="peer sr-only"
-          disabled={isWorking}
-          {...register("isPaid", {
-            required: "A Wheel must be selected",
-          })}
-        /> */}
       </FormRow>
 
       <FormRow variant="horizontal">
@@ -212,11 +221,11 @@ function CreateEditBookingForm({ bookingToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button variant={"small"} disabled={isWorking}>
-          {isEditSession ? "Edit Booking" : "Create new Booking"}
+          {"Create new Booking"}
         </Button>
       </FormRow>
     </Form>
   );
 }
 
-export default CreateEditBookingForm;
+export default CreateBookingForm;

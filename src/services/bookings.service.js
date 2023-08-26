@@ -41,6 +41,22 @@ export async function getBookings({ filter, sortBy, page }) {
   return { data, count };
 }
 
+export async function getBooking(id) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select(`*, vehicles (*), profiles (full_name,email)`)
+    .eq("id", id)
+    .single();
+  console.log("asdasd", data);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking not found");
+  }
+
+  return data;
+}
+
 export async function createEditBooking(newBooking, id) {
   // 1. Create/edit vehicles
   let query = supabase.from("bookings");

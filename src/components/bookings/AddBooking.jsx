@@ -1,6 +1,6 @@
 import Modal from "../ui/Modal.jsx";
 import Button from "../ui/Button.jsx";
-import CreateEditBookingForm from "./CreateEditBookingForm.jsx";
+import CreateBookingForm from "./CreateBookingForm.jsx";
 
 function AddBooking() {
   return (
@@ -10,7 +10,7 @@ function AddBooking() {
           <Button variant={"small"}>New booking</Button>
         </Modal.Open>
         <Modal.Window name="booking-form">
-          <CreateEditBookingForm />
+          <CreateBookingForm />
         </Modal.Window>
       </Modal>
     </div>

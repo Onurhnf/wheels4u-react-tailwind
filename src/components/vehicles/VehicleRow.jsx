@@ -3,7 +3,7 @@ import Modal from "../ui/Modal.jsx";
 import { HiPencil, HiTrash } from "react-icons/hi2";
 import CreateEditVehicleForm from "./CreateEditVehicleForm.jsx";
 import Menu from "../ui/Menu.jsx";
-import DeleteConfirmer from "../ui/DeleteConfirmer.jsx";
+import ConfirmHandler from "../ui/ConfirmHandler.jsx";
 import { useDeleteVehicle } from "./hooks/useDeleteVehicle.js";
 import Button from "../ui/Button.jsx";
 
@@ -64,10 +64,14 @@ function VehichleRow({
               </Modal.Window>
 
               <Modal.Window name="delete">
-                <DeleteConfirmer
-                  type="wheel"
+                <ConfirmHandler
+                  type="delete"
                   disabled={isDeleting}
                   onConfirm={() => deleteVehicle(vehicleId)}
+                  header={"Delete"}
+                  title={
+                    "Are you sure you want to delete this wheel permanently? This action cannot be undone."
+                  }
                 />
               </Modal.Window>
             </div>
