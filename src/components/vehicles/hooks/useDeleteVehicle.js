@@ -14,7 +14,7 @@ export function useDeleteVehicle() {
         queryKey: ["vehicles"],
       });
     },
-    onError: (err) => toast.error(err.message),
+    onError: () => toast.error("Wheel Could not be Deleted."),
   });
 
   return { isDeleting, deleteVehicle };

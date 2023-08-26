@@ -47,7 +47,6 @@ export async function getBooking(id) {
     .select(`*, vehicles (*), profiles (full_name,email)`)
     .eq("id", id)
     .single();
-  console.log("asdasd", data);
 
   if (error) {
     console.error(error);
@@ -74,5 +73,20 @@ export async function createEditBooking(newBooking, id) {
     throw new Error("Booking could not be created");
   }
 
+  return data;
+}
+
+export async function updateBooking(id, obj) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(obj)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
   return data;
 }

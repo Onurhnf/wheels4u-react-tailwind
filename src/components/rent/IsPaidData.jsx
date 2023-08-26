@@ -8,7 +8,7 @@ function IsPaidData({ total_cost, isPaid }) {
     "items-center gap-7 rounded-xl border-2 p-6 text-lg font-semibold ";
 
   const style = {
-    true: base + " border-emerald-300 bg-emerald-200 text-emerald-700",
+    true: base + " border-emerald-200 bg-emerald-100 text-emerald-700",
     false: base + " border-amber-300 bg-amber-200 text-amber-700",
   };
 
@@ -18,8 +18,8 @@ function IsPaidData({ total_cost, isPaid }) {
         <div className="flex flex-row items-center justify-center gap-7">
           <FaMoneyBillAlt />
           <p>
-            Total Cost &emsp;
-            <span className="font-normal">{total_cost}</span>
+            Total Cost &ensp;•&ensp;
+            <span className="font-normal">{total_cost}₺</span>
           </p>
         </div>
         <div className="flex flex-row items-center justify-center gap-3">

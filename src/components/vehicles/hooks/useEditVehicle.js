@@ -12,7 +12,7 @@ export function useEditVehicle() {
       toast.success("Vehicle successfully edited");
       queryClient.invalidateQueries({ queryKey: ["vehicles"] });
     },
-    onError: (err) => toast.error(err.message),
+    onError: () => toast.error("Wheel could not be edited."),
   });
 
   return { isEditing, editVehicle };

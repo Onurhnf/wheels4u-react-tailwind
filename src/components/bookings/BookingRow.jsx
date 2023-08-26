@@ -11,9 +11,11 @@ import { GiConfirmed, GiReturnArrow } from "react-icons/gi";
 import CreateBookingForm from "./CreateBookingForm.jsx";
 import ConfirmHandler from "../ui/ConfirmHandler.jsx";
 import { useNavigate } from "react-router-dom";
+import { useRentReturn } from "../rent/hooks/useRentReturn.jsx";
 
 function BookingRow({ booking }) {
   const navigate = useNavigate();
+  const { isRentReturning, rentReturn } = useRentReturn();
 
   const {
     id: bookingId,
@@ -23,6 +25,7 @@ function BookingRow({ booking }) {
     pickup_date,
     return_date,
     total_cost,
+    isPaid,
     status,
   } = booking;
   const day_differance = differenceInDays(
@@ -38,9 +41,15 @@ function BookingRow({ booking }) {
       </div>
       <Stack className="my-0 gap-1">
         <span className=" font-semibold text-gray-700 ">
-          {profiles?.full_name}
+          {profiles?.full_name ?? (
+            <span className="text-red-300">*Hidden Data*</span>
+          )}
         </span>
-        <span className="text-xs text-stone-500">{profiles?.email} </span>
+        <span className="text-xs text-stone-500">
+          {profiles?.email ?? (
+            <span className="text-red-300">*Hidden Data*</span>
+          )}
+        </span>
       </Stack>
       <div className="font-semibold capitalize">
         {format(parseISO(booking_date), "dd.MM.yyyy")}
@@ -99,10 +108,16 @@ function BookingRow({ booking }) {
             <Modal.Window name="picked-up">
               <ConfirmHandler
                 type={"picked-up"}
-                disabled={false}
+                disabled={isRentReturning}
                 header={"Returned"}
-                title={`Is this wheel returned and ${profiles?.full_name} paid total cost (${total_cost}₺) ?`}
-                onConfirm={() => {}}
+                title={`Is this ${
+                  !isPaid ? `unpaid` : ""
+                } #${bookingId} returned ${
+                  !isPaid
+                    ? `and ${profiles?.full_name} paid total cost (${total_cost}₺)`
+                    : ""
+                } ?`}
+                onConfirm={() => rentReturn({ bookingId })}
               />
             </Modal.Window>
           </div>
