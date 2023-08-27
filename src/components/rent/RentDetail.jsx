@@ -144,7 +144,9 @@ function RentDetail() {
             type={"confirm"}
             disabled={isRenting}
             header={"Confirm"}
-            title={`Is ${profiles?.full_name} here and ready to Pick Up the Wheel?`}
+            title={`Is ${
+              profiles?.full_name !== undefined ? "asdsad" : "*Hidden Data"
+            } here and ready to Pick Up the Wheel?`}
             onConfirm={() => rent({ bookingId })}
           />
         </Modal.Window>
