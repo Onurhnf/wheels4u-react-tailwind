@@ -15,8 +15,8 @@ import Spinner from "../ui/Spinner.jsx";
 import { Link } from "react-router-dom";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("123qwe");
   const { login, isLoading } = useMailLogin();
   const { googleLogin, isLoading: isGoogleLoading } = useGoogleLogin();
   const { githubLogin, isLoading: isGithubLoading } = useGithubLogin();
