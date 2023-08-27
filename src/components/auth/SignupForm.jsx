@@ -32,7 +32,7 @@ function SignupForm() {
       </Button>
       <img
         className=" mt-20 w-52 px-10 md:mt-0 md:hidden md:w-7/12 "
-        src="./logo-light.png"
+        src="./logo-light-no-subtext.png"
         alt="login"
       />
       <p className="mb-6 mt-9 text-2xl font-extrabold md:mt-0">
