@@ -39,6 +39,7 @@ function CreateBookingForm({ onCloseModal }) {
   }, [selectedVehicle, setValue]);
 
   useEffect(() => {
+    setSearchParams({});
     return () => {
       setSearchParams({});
       document.title = "Bookings - Wheels 4U";
