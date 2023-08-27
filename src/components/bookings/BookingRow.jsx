@@ -6,9 +6,7 @@ import { differenceInDays } from "date-fns/esm";
 import StatusBadge from "../ui/StatusBadge.jsx";
 import Modal from "../ui/Modal.jsx";
 import Menu from "../ui/Menu.jsx";
-import { HiPencil } from "react-icons/hi2";
 import { GiConfirmed, GiReturnArrow } from "react-icons/gi";
-import CreateBookingForm from "./CreateBookingForm.jsx";
 import ConfirmHandler from "../ui/ConfirmHandler.jsx";
 import { useNavigate } from "react-router-dom";
 import { useRentReturn } from "../rent/hooks/useRentReturn.jsx";
@@ -73,15 +71,9 @@ function BookingRow({ booking }) {
       <div>
         <Modal>
           <div className="flex items-center  justify-end">
-            <Menu.Toggle id={bookingId} />
+            {status !== "returned" && <Menu.Toggle id={bookingId} />}
 
             <Menu.List id={bookingId}>
-              <Modal.Open opens="edit">
-                <Menu.Button icon={<HiPencil className="text-emerald-600" />}>
-                  Edit
-                </Menu.Button>
-              </Modal.Open>
-
               {status === "unconfirmed" && (
                 <Menu.Button
                   icon={<GiConfirmed className="text-emerald-600" />}
@@ -102,9 +94,6 @@ function BookingRow({ booking }) {
               )}
             </Menu.List>
 
-            <Modal.Window name="edit">
-              <CreateBookingForm bookingToEdit={booking} />
-            </Modal.Window>
             <Modal.Window name="picked-up">
               <ConfirmHandler
                 type={"picked-up"}

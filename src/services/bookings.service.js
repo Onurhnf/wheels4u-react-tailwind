@@ -1,4 +1,5 @@
 import { PAGE_SIZE } from "../utils/constants.js";
+import { getToday } from "../utils/helpers.js";
 import supabase from "./supabase.js";
 
 export async function getBookings({ filter, sortBy, page }) {
@@ -88,5 +89,52 @@ export async function updateBooking(id, obj) {
     console.error(error);
     throw new Error("Booking could not be updated");
   }
+  return data;
+}
+
+export async function getTodaysJobs(id) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, profiles (full_name,email)")
+    // .eq("user_id", id)
+    .or(
+      `and(status.eq.unconfirmed,pickup_date.eq.${getToday()}),and(status.eq.picked-up,return_date.eq.${getToday()})`,
+    )
+    .order("created_at");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings not found");
+  }
+  return data;
+}
+
+export async function getBookingsAfterDay(date) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("created_at, total_cost")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings not found");
+  }
+
+  return data;
+}
+
+export async function getBookedAfterDate(date) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, profiles (full_name,email)")
+    .gte("pickup_date", date)
+    .lte("return_date", getToday());
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
   return data;
 }

@@ -18,7 +18,8 @@ function Button({
     small: base + " rounded-full px-4 py-2 md:px-5 md:py-2.5 text-xs",
     sideMenu: base + " rounded-lg px-4 py-2 md:px-5 md:py-2.5 text-xs",
     secondary:
-      "inline-block text-xs rounded-3xl border-2 border-emerald-300 font-semibold uppercase tracking-wide text-stone-500 transition-colors duration-300 bg-stone-50 hover:bg-stone-300 hover:text-stone-800 focus:bg-stone-300 focus:text-stone-800 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 drop-shadow-md hover:drop-shadow-none",
+      "inline-block text-xs rounded-3xl border-2 border-emerald-300 font-semibold uppercase tracking-wide text-stone-500 transition-colors duration-300 bg-stone-50 hover:bg-stone-300 hover:text-stone-800 focus:bg-stone-300 focus:text-stone-800 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 drop-shadow-md hover:drop-shadow-none " +
+      className,
   };
 
   if (to)
