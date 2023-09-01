@@ -48,7 +48,7 @@ function CreateEditVehicleForm({ vehicleToEdit = {}, onCloseModal }) {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
+      type={onCloseModal ? "modal" : "default"}
     >
       <FormRow
         variant="horizontal"

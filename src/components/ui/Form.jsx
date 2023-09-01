@@ -1,7 +1,7 @@
 import React from "react";
 
 function Form({ type = "default", onSubmit, children }) {
-  const base = "overflow-hidden text-xl group";
+  const base = " text-xl group";
 
   let styles = {
     default:
